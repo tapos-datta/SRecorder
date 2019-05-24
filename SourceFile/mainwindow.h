@@ -51,11 +51,12 @@ private slots:
 
     void on_screemComboBox_currentIndexChanged(int index);
 
-    void on_pushButton_2_clicked();
     void shortcutFilter();
     void capturedFinished();
 
     void on_screenShot_clicked();
+
+    void on_captureVideo_clicked();
 
 private:
     Ui::MainWindow *ui;

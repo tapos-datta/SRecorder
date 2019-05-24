@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     msgBox.setStyleSheet(StyleSheet);
 
-    ui->captureButton->setEnabled(false);
+    ui->captureVideo->setEnabled(false);
     ui->screenShot->setEnabled(false);
 
     selectedROI = false;
@@ -132,8 +132,7 @@ void MainWindow::getRectanglePoints(cv::Point& p1,cv::Point& p2)
     // Copy the data into new matrix
     croppedRef.copyTo(cropped);
     ui->screenShot->setEnabled(true);
-    ui->captureButton->setEnabled(false);
-
+    ui->captureVideo->setEnabled(true);
 
 }
 
@@ -187,41 +186,6 @@ void MainWindow::on_screemComboBox_currentIndexChanged(int index)
 
 }
 
-void MainWindow::on_pushButton_2_clicked()
-{
-
-    if(selectedROI)
-    {
-        qDebug()<<"Enter this section";
-
-        QString path = QFileDialog::getSaveFileName(0,
-        tr("Save Video File As"),
-        ".","*.avi");
-
-        if(!path.isEmpty())
-        {
-            msgBox.setText("Screen recording will be start now\n\nTo stop recording use 'Ctrl+T'");
-            msgBox.exec();
-
-            stopRecording = new QShortcut(QKeySequence("Ctrl+T"), this);
-            connect(stopRecording,SIGNAL(activated()),this,SLOT(shortcutFilter()));
-
-            thread = new CaptureInBackGround();
-
-            connect(this,SIGNAL(sendStopAction()),thread,SLOT(stopAction()));
-            connect(thread,SIGNAL(sendCompletedNotification()),this,SLOT(capturedFinished()));
-            thread->scrHeight = scrHeight;
-            thread->scrWidth = scrWidth;
-            thread->startPositionAtWidth = startPositionAtWidth;
-            thread->topLeftPoint = topLeftPoint;
-            thread->bottomRightPoint = bottomRightPoint;
-            thread->saveFileName = path;
-            thread->start();
-
-        }
-    }
-
-}
 
 void MainWindow::shortcutFilter(){
 
@@ -276,5 +240,41 @@ void MainWindow::on_screenShot_clicked()
 
     }
 
+
+}
+
+void MainWindow::on_captureVideo_clicked()
+{
+    qDebug()<<"Enter this section";
+    if(selectedROI)
+    {
+
+
+        QString path = QFileDialog::getSaveFileName(0,
+        tr("Save Video File As"),
+        ".","*.avi");
+
+        if(!path.isEmpty())
+        {
+            msgBox.setText("Screen recording will be start now\n\nTo stop recording use 'Ctrl+T'");
+            msgBox.exec();
+
+            stopRecording = new QShortcut(QKeySequence("Ctrl+T"), this);
+            connect(stopRecording,SIGNAL(activated()),this,SLOT(shortcutFilter()));
+
+            thread = new CaptureInBackGround();
+
+            connect(this,SIGNAL(sendStopAction()),thread,SLOT(stopAction()));
+            connect(thread,SIGNAL(sendCompletedNotification()),this,SLOT(capturedFinished()));
+            thread->scrHeight = scrHeight;
+            thread->scrWidth = scrWidth;
+            thread->startPositionAtWidth = startPositionAtWidth;
+            thread->topLeftPoint = topLeftPoint;
+            thread->bottomRightPoint = bottomRightPoint;
+            thread->saveFileName = path;
+            thread->start();
+
+        }
+    }
 
 }

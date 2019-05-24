@@ -154,7 +154,7 @@ padding-right: 5px;</string>
      <string>Screen Selection</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="captureButton">
+   <widget class="QPushButton" name="captureVideo">
     <property name="geometry">
      <rect>
       <x>160</x>

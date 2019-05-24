@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     MainWindow w;
-    w.setWindowTitle("SRecoder");
+    w.setWindowTitle("SRecorder");
 //    w.setWindowFlags(Qt::Window| Qt::WindowMinimizeButtonHint | Qt::WindowSystemMenuHint| Qt::WindowMaximizeButtonHint );
     w.show();
 
