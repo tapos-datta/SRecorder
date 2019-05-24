@@ -6,7 +6,7 @@ SRecorder is a desktop application (only for Windows),built in **C++** with **Op
 This application can be used for taking screenshot alongside with captureing screen.
 
 ## Requirements
-- Qt5
+- Qt5 with C++
 - OpenCV (3.X)
 
 ### How it Works
