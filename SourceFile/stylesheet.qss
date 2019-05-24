@@ -1,0 +1,23 @@
+QMessageBox{
+color: rgb(16, 16, 16);
+font: 75 10pt "MS Shell Dlg 2";
+background-color: rgb(163, 193, 173);
+}
+
+QPushButton{
+	border-width: 1px;
+	border-color: #339;
+	border-style: solid;
+	border-radius: 7;
+	padding: 3px;
+	font-size: 12px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+QLabel{
+	font-size: 13px;
+	padding-left: 5px;
+	padding-right: 5px;
+	qproperty-alignment: AlignCenter,AlignVCenter ;
+}
